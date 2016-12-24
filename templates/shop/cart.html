@@ -1,0 +1,19 @@
+{% extends "./base_shop.html" %}
+
+{% block title %}Cart{% endblock title %}
+
+{% block content %}
+{{ block.super }}
+<form action="{% url 'shop:checkout' %}" method="POST">
+    <script
+        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+        data-key="{{ data_key }}"
+        data-amount="{{ data_amount }}"
+        data-name="{{ data_name }}"
+        data-description="{{ data_description }}"
+        data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+        data-locale="auto">
+    </script>
+    {% csrf_token %}
+</form>
+{% endblock content %}
